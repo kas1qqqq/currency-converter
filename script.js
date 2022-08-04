@@ -19,8 +19,8 @@ btnUsd.onclick = () => {
   } else if (inputUsd.value.length >= 6) {
     return (output.innerHTML = 'not valid')
   }
-  svgUsd.style.outline = '2px solid #FFD772'
-  svgEur.style.outline = 'none'
+  svgUsd.style.border = '2px solid #FFD772'
+  svgEur.style.border = 'none'
 }
 btnEur.onclick = () => {
   output.innerHTML = parseFloat(inputEur.value * 37.35).toFixed(2) + ' ₴'
@@ -35,8 +35,8 @@ btnEur.onclick = () => {
   } else if (inputEur.value.length >= 6) {
     return (output.innerHTML = 'not valid')
   }
-  svgUsd.style.outline = 'none'
-  svgEur.style.outline = '2px solid #FFD772'
+  svgUsd.style.border = 'none'
+  svgEur.style.border = '2px solid #FFD772'
 }
 
 //change theme
