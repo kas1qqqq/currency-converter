@@ -23,7 +23,7 @@ btnUsd.onclick = () => {
   svgEur.style.border = 'none'
 }
 btnEur.onclick = () => {
-  output.innerHTML = parseFloat(inputEur.value * 37.35).toFixed(2) + ' ₴'
+  output.innerHTML = parseFloat(inputEur.value * 37.47).toFixed(2) + ' ₴'
   if (!inputEur.value) {
     return (output.innerHTML = 'not valid')
   } else if (inputEur.value <= 0) {

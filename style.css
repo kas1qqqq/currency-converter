@@ -54,10 +54,6 @@ input::placeholder {
   text-align: center;
 }
 
-input:focus {
-  outline: 2px solid #e5e5e5;
-}
-
 .title {
   color: #333333;
   cursor: pointer;
