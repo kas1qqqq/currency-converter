@@ -5,9 +5,23 @@ let btnEur = document.querySelector('#btnEur')
 let output = document.querySelector('#output')
 let svgUsd = document.querySelector('#svgUsd')
 let svgEur = document.querySelector('#svgEur')
+let exchangeDate = document.querySelector('#exchangeDate')
+
+async function getCurrency() {
+  const response = await fetch(
+    'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json'
+  )
+  const getArray = await response.json()
+  return getArray
+}
+
+getCurrency().then((arr) => {
+  const findExchangeDailyDate = arr.find((date) => date.exchangedate)
+  const getDailyRateDate = findExchangeDailyDate.exchangedate
+  return (exchangeDate.innerText = `Exchange rate at ${getDailyRateDate} by NBU`)
+})
 
 btnUsd.onclick = () => {
-  output.innerHTML = parseFloat(inputUsd.value * 36.65).toFixed(2) + ' ₴'
   if (!inputUsd.value) {
     return (output.innerHTML = 'not valid')
   } else if (inputUsd.value <= 0) {
@@ -19,11 +33,21 @@ btnUsd.onclick = () => {
   } else if (inputUsd.value.length >= 6) {
     return (output.innerHTML = 'not valid')
   }
-  svgUsd.style.border = '2px solid #FFD772'
-  svgEur.style.border = 'none'
+
+  svgUsd.classList.add('add-pulse-black')
+  svgEur.classList.remove('add-pulse-black')
+
+  getCurrency().then((arr) => {
+    const findUsd = arr.find((usd) => usd.r030 === 840)
+    const getUsd = findUsd.rate
+    return (output.innerText = new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(inputUsd.value * getUsd))
+  })
 }
+
 btnEur.onclick = () => {
-  output.innerHTML = parseFloat(inputEur.value * 37.47).toFixed(2) + ' ₴'
   if (!inputEur.value) {
     return (output.innerHTML = 'not valid')
   } else if (inputEur.value <= 0) {
@@ -35,8 +59,18 @@ btnEur.onclick = () => {
   } else if (inputEur.value.length >= 6) {
     return (output.innerHTML = 'not valid')
   }
-  svgUsd.style.border = 'none'
-  svgEur.style.border = '2px solid #FFD772'
+
+  svgUsd.classList.remove('add-pulse-black')
+  svgEur.classList.add('add-pulse-black')
+
+  getCurrency().then((arr) => {
+    const findEur = arr.find((usd) => usd.r030 === 978)
+    const getEur = findEur.rate
+    return (output.innerText = new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(inputEur.value * getEur))
+  })
 }
 
 //change theme
