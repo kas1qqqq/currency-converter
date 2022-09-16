@@ -42,7 +42,7 @@ btnUsd.onclick = () => {
     const getUsd = findUsd.rate
     return (output.innerText = new Intl.NumberFormat('de-DE', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'UAH',
     }).format(inputUsd.value * getUsd))
   })
 }
@@ -68,7 +68,7 @@ btnEur.onclick = () => {
     const getEur = findEur.rate
     return (output.innerText = new Intl.NumberFormat('de-DE', {
       style: 'currency',
-      currency: 'EUR',
+      currency: 'UAH',
     }).format(inputEur.value * getEur))
   })
 }
