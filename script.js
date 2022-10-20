@@ -59,7 +59,7 @@ btnEur.onclick = () => {
   } else if (inputEur.value.length >= 6) {
     return (output.innerHTML = 'not valid')
   }
-
+  
   svgUsd.classList.remove('add-pulse-black')
   svgEur.classList.add('add-pulse-black')
 
